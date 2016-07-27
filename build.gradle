@@ -1,0 +1,36 @@
+group 'LetvMock'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral();
+    jcenter()
+}
+
+dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.jayway.jsonpath:json-path:2.2.0',
+            'org.slf4j:slf4j-api:1.7.21',
+            'com.github.dreamhead:moco-core:0.11.0',
+            'com.github.kevinsawicki:http-request:5.6',
+            'junit:junit:4.12'
+}
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+
+}
+
+task download(type: Copy) {
+    from configurations.runtime
+    into 'lib' //下载后存放jar包的位置
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
